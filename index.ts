@@ -4,10 +4,11 @@ import './style.css';
 
 // Write TypeScript code!
 const appDiv: HTMLDivElement = document.querySelector('#id');
+const { clientWidth, clientHeight } = appDiv;
 let stage: Konva.Stage = new Konva.Stage({
   container: appDiv,
-  width: 500,
-  height: 500,
+  width: clientWidth,
+  height: clientHeight,
   draggable: true,
 });
 const scaleBy = 1.2;
@@ -28,24 +29,47 @@ stage.addEventListener('wheel', (e) => {
   };
   stage.position(newPos);
 });
-const layer: Konva.Layer = new Konva.Layer();
-var rect = new Konva.Rect({
+const layerbg: Konva.Layer = new Konva.Layer();
+const layerMark: Konva.Layer = new Konva.Layer();
+//添加圆形
+var rect = new Konva.Circle({
   x: 100,
-  y: 50,
-  width: 200,
-  height: 100,
+  y: 400,
+  width: 50,
+  height: 50,
   fill: 'red',
+  draggable: true,
 });
+//添加点击事件
+rect.on('click', () => {
+  console.log(1);
+});
+//注册到layer
+layerMark.add(rect);
+//绘制图片
 const originImg = new Image();
 originImg.src = 'http://shanhe.kim/api/wz/bing.php?rand=true';
 originImg.onload = () => {
   // 绘制图片
   const img = new Konva.Image({
-    x: 30,
-    y: 30,
+    x: 0,
+    y: 0,
     image: originImg,
   });
-  layer.add(img);
+  const w = img.width();
+  const h = img.height();
+  const sw = stage.width();
+  const sh = stage.height();
+  const wr = sw / w;
+  const hr = sh / h;
+  const s = Math.min(wr, hr);
+  img.scale({ x: s, y: s });
+  img.position({
+    x: sw / 2 - (w * s) / 2,
+    y: sh / 2 - (h * s) / 2,
+  });
+  layerbg.add(img);
 };
-layer.add(rect);
-stage.add(layer);
+
+stage.add(layerbg);
+stage.add(layerMark);
