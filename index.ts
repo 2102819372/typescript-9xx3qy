@@ -11,7 +11,8 @@ let stage: Konva.Stage = new Konva.Stage({
   height: clientHeight,
   draggable: true,
 });
-const scaleBy = 1.2;
+const scaleBy = 1.1;
+//stage的滚动事件
 stage.addEventListener('wheel', (e) => {
   e.preventDefault();
   const oldScale = stage.scaleX();
@@ -33,8 +34,8 @@ const layerbg: Konva.Layer = new Konva.Layer();
 const layerMark: Konva.Layer = new Konva.Layer();
 //添加圆形
 var rect = new Konva.Circle({
-  x: 100,
-  y: 400,
+  x: 50,
+  y: 50,
   width: 50,
   height: 50,
   fill: 'red',
