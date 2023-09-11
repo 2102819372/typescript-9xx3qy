@@ -109,4 +109,6 @@ function animate() {
 }
 animate();
 //渲染器渲染大小
-// renderer.setSize(threejs.clientWidth, threejs.clientHeight);
+window.addEventListener('resize', () => {
+  renderer.setSize(threejs.clientWidth, threejs.clientHeight);
+});
