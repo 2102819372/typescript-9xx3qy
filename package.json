@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "echarts": "^5.4.3",
-    "konva": "^9.2.0"
+    "konva": "^9.2.0",
+    "three": "^0.156.1"
   }
 }

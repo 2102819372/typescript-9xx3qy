@@ -1,5 +1,6 @@
 // Import stylesheets
 import Konva from 'konva';
+import THREE from 'three';
 import './style.css';
 
 // Write TypeScript code!
@@ -74,3 +75,23 @@ originImg.onload = () => {
 
 stage.add(layerbg);
 stage.add(layerMark);
+/**
+ *threejs
+ */
+//获取dom
+const threejs: HTMLDivElement = document.querySelector('#webgl');
+//搭建场景
+const scene = new THREE.Scene();
+//创建相机
+const camera = new THREE.PerspectiveCamera(
+  75,
+  threejs.clientWidth / threejs.clientHeight,
+  0.1,
+  1000
+);
+//建立渲染器
+const renderer = new THREE.WebGLRenderer();
+//注册渲染器到dom
+// renderer.
+//渲染器渲染大小
+// renderer.setSize(threejs.clientWidth, threejs.clientHeight);
