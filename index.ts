@@ -89,9 +89,24 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
-//建立渲染器
-const renderer = new THREE.WebGLRenderer();
-//注册渲染器到dom
-// renderer.
+//建立渲染器|
+const renderer = new THREE.WebGLRenderer({
+  canvas: threejs,
+});
+//创建方块
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
+camera.position.z = 5;
+//回调请求下一帧
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.01;
+}
+animate();
 //渲染器渲染大小
 // renderer.setSize(threejs.clientWidth, threejs.clientHeight);
