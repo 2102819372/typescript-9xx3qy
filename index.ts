@@ -104,6 +104,7 @@ camera.position.z = 5;
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
+  renderer.setSize(threejs.clientWidth, threejs.clientHeight);
   cube.rotation.x += 0.01;
   cube.rotation.y += 0.01;
 }
