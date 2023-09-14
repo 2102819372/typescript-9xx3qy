@@ -3,6 +3,24 @@ import Konva from 'konva';
 import THREE from 'three';
 import './style.css';
 
+function debounce(callback) {
+  let timer;
+  return function (e) {
+    if (timer) clearTimeout(timer);
+    console.log('before:', timer);
+    timer = setTimeout(() => {
+      callback();
+    }, 1000);
+    console.log('after:', timer);
+  };
+}
+const input = document.querySelector('.input');
+input.addEventListener(
+  'input',
+  debounce(() => {
+    console.log(1);
+  })
+);
 // Write TypeScript code!
 const appDiv: HTMLDivElement = document.querySelector('#id');
 const { clientWidth, clientHeight } = appDiv;
